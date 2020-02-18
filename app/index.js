@@ -2,9 +2,13 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import './index.css';
 
+import Posts from './components/Posts';
+
 function App() {
   return (
-    <h1>Hello</h1>
+    <div className="container">
+      <Posts type="top" />
+    </div>
   )
 }
 
