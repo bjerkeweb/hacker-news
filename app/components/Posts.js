@@ -9,6 +9,7 @@ export default function Posts({ type }) {
 
   useEffect( () => {
     (async function() {
+      setLoading( true );
       let posts = await fetchMainPosts( type );
       setPosts( posts );
       setLoading( false );
