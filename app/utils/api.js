@@ -22,13 +22,14 @@ export async function fetchPost( id ) {
 export async function fetchMainPosts( type ) {
   let res = await fetch( `${api}/${type}stories${opts}` );
   let ids = await res.json();
-
+  
   ids = ids.slice( 0 , 50 );
 
   let posts = await Promise.all( ids.map( fetchPost ) );
 
   return posts
-  .filter( onlyStories )
+  .filter( Boolean )
   .filter( removeDead )
+  .filter( onlyStories )
   .filter( removeDeleted );
 }
