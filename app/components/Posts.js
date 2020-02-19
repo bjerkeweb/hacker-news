@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { fetchPost, fetchMainPosts } from '../utils/api';
 import PropTypes from 'prop-types';
 import PostsList from './PostList';
+import Loading from './Loading';
 
 export default function Posts({ type }) {
   const [ posts, setPosts ] = useState( undefined );
@@ -17,7 +18,7 @@ export default function Posts({ type }) {
   }, [ type ] );
 
   if ( loading ) {
-    return <h1>Loading...</h1>
+    return <Loading />
   }
 
   return <PostsList posts={posts} />

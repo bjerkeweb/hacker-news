@@ -21,6 +21,7 @@ body {
 .post-list {
   list-style-type: none;
   padding-left: 0;
+  margin-top: 0;
 }
 
 li.post {
@@ -61,4 +62,29 @@ li.post {
 .nav-link.active {
   color: #fff;
   background: #111;
+}
+
+.loading-spinner {
+  content: '';
+  display: block;
+  height: 28px;
+  width: 28px;
+  margin-left: auto;
+  margin-right: auto;
+  color: rgba(90, 90, 90, 0.2);
+  position: relative;
+  display: block;
+  border: 3px solid;
+  border-radius: 50%;
+  border-right-color: #5a5a5a;
+  animation: rotate 550ms linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
