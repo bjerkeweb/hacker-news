@@ -5,6 +5,10 @@ function onlyStories( post ) {
   return post.type === 'story';
 }
 
+function onlyComments( post ) {
+  return post.type === 'comment';
+}
+
 function removeDead( post ) {
   return post.dead !== true;
 }
@@ -13,10 +17,20 @@ function removeDeleted( post ) {
   return post.deleted !== true;
 }
 
-export async function fetchPost( id ) {
+export async function fetchItem( id ) {
   let res = await fetch( `${api}/item/${id}${opts}` );
   let json = await res.json();
   return json;
+}
+
+export async function fetchComments( ids ) {
+  let comments = await Promise.all( ids.map( fetchItem ) );
+
+  return comments
+  .filter( Boolean )
+  .filter( removeDead )
+  .filter( removeDeleted )
+  .filter( onlyComments )
 }
 
 export async function fetchMainPosts( type ) {
@@ -25,7 +39,7 @@ export async function fetchMainPosts( type ) {
   
   ids = ids.slice( 0 , 50 );
 
-  let posts = await Promise.all( ids.map( fetchPost ) );
+  let posts = await Promise.all( ids.map( fetchItem ) );
 
   return posts
   .filter( Boolean )

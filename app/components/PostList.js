@@ -26,6 +26,8 @@ export default function PostList({ posts }) {
             <PostMeta
               by={ post.by }
               time={ post.time }
+              id={ post.id }
+              descendants={ post.descendants }
             />
           </li>
         )

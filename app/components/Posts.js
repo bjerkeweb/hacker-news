@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchPost, fetchMainPosts } from '../utils/api';
+import { fetchItem, fetchMainPosts } from '../utils/api';
 import PropTypes from 'prop-types';
 import PostsList from './PostList';
 import Loading from './Loading';

@@ -5,10 +5,12 @@ import {
   BrowserRouter as Router,
   Switch,
   Link,
-  Route
+  Route,
+  Redirect
 } from 'react-router-dom';
 
 import Posts from './components/Posts';
+import Post from './components/Post';
 import Nav from './components/Nav';
 
 function App() {
@@ -23,6 +25,9 @@ function App() {
           <Route path="/new">
             <Posts type="new" />
           </Route>
+          <Route path="/post/:id" component={ Post } />
+          <Redirect from="/post" to="/" />
+          <Route render={() => <h1>404</h1>} />
         </Switch>
       </div>
     </Router>
