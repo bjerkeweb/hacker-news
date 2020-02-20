@@ -12,6 +12,7 @@ import {
 import Posts from './components/Posts';
 import Post from './components/Post';
 import Nav from './components/Nav';
+import User from './components/User';
 
 function App() {
   return (
@@ -25,6 +26,8 @@ function App() {
           <Route path="/new">
             <Posts type="new" />
           </Route>
+          <Route path="/user/:id" component={ User } />
+          <Redirect from="/user" to="/" />
           <Route path="/post/:id" component={ Post } />
           <Redirect from="/post" to="/" />
           <Route render={() => <h1>404</h1>} />

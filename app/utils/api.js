@@ -18,9 +18,19 @@ function removeDeleted( post ) {
 }
 
 export async function fetchItem( id ) {
-  let res = await fetch( `${api}/item/${id}${opts}` );
+  let res = await fetch( `${ api }/item/${ id }${ opts }` );
   let json = await res.json();
   return json;
+}
+
+export async function fetchPosts( ids ) {
+  let posts = await Promise.all( ids.map( fetchItem ) );
+
+  return posts
+  .filter( Boolean )
+  .filter( removeDead )
+  .filter( removeDeleted)
+  .filter( onlyStories );
 }
 
 export async function fetchComments( ids ) {
@@ -30,11 +40,18 @@ export async function fetchComments( ids ) {
   .filter( Boolean )
   .filter( removeDead )
   .filter( removeDeleted )
-  .filter( onlyComments )
+  .filter( onlyComments );
+}
+
+export async function fetchUser( id ) {
+  let res = await fetch( `${ api }/user/${ id }${ opts }` )
+  let json = await res.json();
+
+  return json;
 }
 
 export async function fetchMainPosts( type ) {
-  let res = await fetch( `${api}/${type}stories${opts}` );
+  let res = await fetch( `${ api }/${ type }stories${ opts }` );
   let ids = await res.json();
   
   ids = ids.slice( 0 , 50 );
