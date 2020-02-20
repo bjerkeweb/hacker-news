@@ -1,11 +1,11 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 export default function Nav() {
   return (
     <div className="header-main">
       <ul className="main-nav">
-        <li class="logo"></li>
+        <Link to="/"><li class="logo"></li></Link>
         <li>
           <NavLink exact to='/' className="nav-link" activeClassName="active">Top</NavLink>
         </li>
